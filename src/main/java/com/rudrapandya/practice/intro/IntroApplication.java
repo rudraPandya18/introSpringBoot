@@ -1,17 +1,29 @@
 package com.rudrapandya.practice.intro;
 
+import com.rudrapandya.practice.intro.impl.SmsNotification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootApplication
 public class IntroApplication implements CommandLineRunner {
 
-    @Autowired
-    PaymentService paymentService;
+    //@Autowired
+//    final NotificationService notificationServiceObj;
+//
+//    public IntroApplication(NotificationService notificationServiceObj) {
+//        this.notificationServiceObj = notificationServiceObj;
+//    }
 
-	public static void main(String[] args) {
+    @Autowired
+    Map<String, NotificationService>  notificationServices = new HashMap<>();
+
+    public IntroApplication(Map<String, NotificationService> notificationServices) {}
+    public static void main(String[] args) {
 
         SpringApplication.run(IntroApplication.class, args);
 
@@ -19,6 +31,11 @@ public class IntroApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        paymentService.pay();
+
+        //notificationServiceObj.send("hello");
+        for(var notificationService : notificationServices.entrySet()) {
+            System.out.println(notificationService.getKey());
+            notificationService.getValue().send("hello");
+        }
     }
 }
