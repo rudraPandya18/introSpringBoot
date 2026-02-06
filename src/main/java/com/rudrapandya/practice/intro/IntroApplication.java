@@ -19,8 +19,10 @@ public class IntroApplication implements CommandLineRunner {
 //        this.notificationServiceObj = notificationServiceObj;
 //    }
 
-    @Autowired
-    Map<String, NotificationService>  notificationServices = new HashMap<>();
+//    @Autowired
+//    Map<String, NotificationService>  notificationServices = new HashMap<>();
+
+
 
     public IntroApplication(Map<String, NotificationService> notificationServices) {}
     public static void main(String[] args) {
@@ -33,9 +35,10 @@ public class IntroApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //notificationServiceObj.send("hello");
-        for(var notificationService : notificationServices.entrySet()) {
-            System.out.println(notificationService.getKey());
-            notificationService.getValue().send("hello");
-        }
-    }
+//        for(var notificationService : notificationServices.entrySet()) {
+//            System.out.println(notificationService.getKey());
+//            notificationService.getValue().send("hello");
+//        }
+
+       }
 }
